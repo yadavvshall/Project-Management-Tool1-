@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="front.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <script src="script.js"></script>
+    <title>Let's Chat</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Tool</div>
+        <ul>
+            <div class="menu">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/login.html">Login</a></li>
+               
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="bg-img"><img class="bg-img" src="images/my.jpg" alt="error" style="width: 100%;"></div>
+        <div class="img"><img class="img" src="/images/ty1.jpg" alt="error"></div>
+        <h1 class="text1">Live <div class="text-part"> Get Started</div></h1>
+        <h1 class="text2">Live <div class="text-part"> Start</div></h1>
+        <div class="text">"Believe you can, and you're halfway there." - Theodore Roosevelt.</div>
+    </header>
+
+    <div class="btn">
+        <button class="btn1"><a href="/login.html">Setup</a></button>
+    </div>
+
+ 
+    <h3 class="chatup">Chat</h3>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+   
+    <h3 class="cmt">Project Management Tool</h3>
+    <form id="contentForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required>
+        <label for="content">Content:</label>
+        <textarea id="content" required></textarea>
+        <div class="btn">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <div id="contentList">
+        
+        <div class="saved-content">
+           
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    
+    const chatMessages = document.getElementById('chat-messages');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+
+    function sendMessage() {
+        const message = messageInput.value;
+
+        if (message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = message;
+
+            chatMessages.appendChild(messageElement);
+
+            messageInput.value = '';
+        }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+
+    messageInput.addEventListener('keydown', function (event) {
+        if (event.keyCode === 13) {
+            sendMessage();
+        }
+    });
+
+
+
+    document.getElementById('contentForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var titleInput = document.getElementById('title');
+        var contentInput = document.getElementById('content');
+
+        var title = titleInput.value;
+        var content = contentInput.value;
+
+        var contentItem = document.createElement('div');
+        contentItem.className = 'content-item';
+        contentItem.innerHTML = '<h3>' + title + '</h3><p>' + content + '</p>';
+
+        document.getElementById('contentList').appendChild(contentItem);
+
+        titleInput.value = '';
+        contentInput.value = '';
+    });
+</script>
